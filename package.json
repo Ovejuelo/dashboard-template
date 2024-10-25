@@ -6,9 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/roboto": "^5.1.0",
+    "@mui/icons-material": "^6.1.5",
+    "@mui/material": "^6.1.5",
     "@reduxjs/toolkit": "^2.3.0",
     "next": "15.0.1",
     "react": "18.3.0",
@@ -21,6 +28,7 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "15.0.1",
+    "prettier": "^3.3.3",
     "typescript": "^5"
   }
 }
