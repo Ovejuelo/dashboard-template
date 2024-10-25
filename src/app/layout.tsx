@@ -1,17 +1,11 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import StoreProvider from "./store-provider";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import type { Metadata } from "next";
+import StoreProvider from "./store-provider";
+import { Theme } from "@/theme";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,11 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <StoreProvider>
-      <html lang="en" style={{background: '#000', color: '#FAFAFA'}}>
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          {children}
-        </body>
-      </html>
+      <Theme>
+        <html lang="en">
+          <body>{children}</body>
+        </html>
+      </Theme>
     </StoreProvider>
   );
 }
