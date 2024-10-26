@@ -1,7 +1,7 @@
 const families = {
   roboto: {
-    titles: 'Roboto',
-    body: 'Roboto'
+    titles: 'var(--font-roboto)',
+    body: 'var(--font-roboto)'
   }
 };
 
