@@ -1,4 +1,4 @@
-import { createAppSlice } from "@/lib/create-app-slice";
+import { createAppSlice } from '@/lib/state/create-app-slice';
 
 export interface CounterSliceState {
   value: number;
@@ -6,26 +6,26 @@ export interface CounterSliceState {
 
 const initialState: CounterSliceState = {
   value: 0
-}
+};
 
 export const counterSlice = createAppSlice({
-  name: "counter",
+  name: 'counter',
   initialState,
-  reducers: (create) => ({
+  reducers: create => ({
     increment: create.reducer(state => {
-      state.value += 1
+      state.value += 1;
     }),
     decrement: create.reducer(state => {
-      state.value -= 1
+      state.value -= 1;
     }),
     reStart: create.reducer(state => {
-      state.value = initialState.value
+      state.value = initialState.value;
     })
   }),
   selectors: {
     selectCount: counter => counter.value
   }
-})
+});
 
-export const {increment, decrement, reStart} = counterSlice.actions
-export const {selectCount} = counterSlice.selectors
+export const { increment, decrement, reStart } = counterSlice.actions;
+export const { selectCount } = counterSlice.selectors;

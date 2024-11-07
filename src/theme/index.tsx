@@ -3,8 +3,8 @@
 import { ReactNode } from 'react';
 import { CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material';
 
-import { useAppSelector } from '@/lib/hooks';
-import { selectUserData } from '@/lib/features/user/user-slice';
+import { useAppSelector } from '@/lib/state/hooks';
+import { selectUserData } from '@/lib/state/features/user/user-slice';
 import lightTheme from './light';
 import darkTheme from './dark';
 
