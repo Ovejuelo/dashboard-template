@@ -1,10 +1,9 @@
 import { Action, combineSlices, configureStore, ThunkAction } from '@reduxjs/toolkit';
 
-import { counterSlice } from './features/counter/counter-slice';
 import { userSlice } from './features/user/user-slice';
-import { authSlice } from './features/auth/auth.slice';
+import { authSlice } from './features/auth/auth-slice';
 
-const rootReducer = combineSlices(counterSlice, userSlice, authSlice);
+const rootReducer = combineSlices(userSlice, authSlice);
 
 export const makeStore = () => {
   return configureStore({

@@ -40,3 +40,8 @@ export async function createSession(token: string) {
 
   redirect('/dashboard');
 }
+
+export async function deleteSession() {
+  (await cookies()).delete('session');
+  redirect('/login');
+}

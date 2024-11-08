@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { generateGUID } from '@/utils/board-utils';
 import { authDB, jwtConfig } from './db';
+import _ from 'lodash';
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
@@ -19,9 +20,8 @@ export async function POST(req: NextRequest) {
     const newUser = {
       uuid: generateGUID(),
       from: 'custom-db',
-      role: 'admin',
       password,
-      data: { displayName: username, email, theme: 'dark' }
+      data: { displayName: username, email, theme: 'dark', role: 'admin' }
     };
 
     authDB.users.push(newUser);
@@ -30,8 +30,14 @@ export async function POST(req: NextRequest) {
       expiresIn: jwtConfig.expiresIn
     });
 
+    const user = _.cloneDeep(newUser);
+
+    delete user.from;
+    delete user.password;
+    delete user.uuid;
+
     return NextResponse.json({
-      user: newUser,
+      user,
       access_token
     });
   } else return NextResponse.json(error, { status: 400 });

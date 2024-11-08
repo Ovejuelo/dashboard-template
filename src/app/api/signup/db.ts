@@ -3,23 +3,23 @@ export const authDB = {
     {
       uuid: 'XgbuVEXBU5gtSKdbQRP1Zbbby1i1',
       from: 'custom-db',
-      password: 'admin',
-      role: 'admin',
+      password: '123456',
       data: {
         displayName: 'John Doe',
         email: 'admin@mail.com',
-        theme: 'light'
+        theme: 'dark',
+        role: 'admin'
       }
     },
     {
       uuid: 'XgbuVEXBU6gtSKdbTYR1Zbbby1i3',
       from: 'custom-db',
-      password: 'staff',
-      role: 'staff',
+      password: 'P@ssword1',
       data: {
-        displayName: 'Ober Hernández',
+        displayName: 'Obed Hernández',
         email: 'staff@mail.com',
-        theme: 'dark'
+        theme: 'dark',
+        role: 'staff'
       }
     }
   ]

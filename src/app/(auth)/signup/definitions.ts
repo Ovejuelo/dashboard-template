@@ -17,7 +17,7 @@ export const SignupFormSchema = z.object({
 export type FormState =
   | {
       errors?: {
-        name?: string[];
+        username?: string[];
         email?: string[];
         password?: string[];
       };

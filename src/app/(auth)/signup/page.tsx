@@ -2,29 +2,28 @@
 
 import { Box, Button, CircularProgress, Paper, Typography, Link as MuiLink } from '@mui/material';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-
-import Input from '@/components/form/input';
+import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 
-interface IFormData {
-  password: string;
-  email: string;
-}
+import Input from '@/components/form/input';
+import { SignupFormSchema } from './definitions';
+import { useAppDispatch } from '@/lib/store/hooks';
+import { createUserSlice } from '@/lib/store/features/auth/auth-slice';
+import { ISignupData } from '@/lib/store/features/auth/auth-types';
 
 export function SignupForm() {
+  const dispatch = useAppDispatch();
   const {
     control,
     handleSubmit,
     formState: { errors, isSubmitting }
-  } = useForm<IFormData>({
-    defaultValues: {
-      password: '',
-      email: ''
-    }
+  } = useForm<ISignupData>({
+    defaultValues: { username: '', password: '', email: '' },
+    resolver: zodResolver(SignupFormSchema)
   });
 
-  const onSubmit: SubmitHandler<IFormData> = async data => {
-    console.log(data);
+  const onSubmit: SubmitHandler<ISignupData> = async data => {
+    await dispatch(createUserSlice(data));
   };
 
   return (
@@ -39,10 +38,15 @@ export function SignupForm() {
       <Paper sx={{ padding: 4, width: { xs: '100%', md: 500 } }}>
         <Box mb={4}>
           <Typography align="center" variant="h3">
-            Login
+            Register
           </Typography>
         </Box>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <Controller
+            name="username"
+            control={control}
+            render={({ field }) => <Input {...field} label="User Name" errors={errors} />}
+          />
           <Controller
             name="email"
             control={control}
@@ -62,8 +66,8 @@ export function SignupForm() {
           </Box>
         </form>
         <Box width={1} display="flex" justifyContent="center" mt={2}>
-          <MuiLink component={Link} href="/signup">
-            Or register
+          <MuiLink component={Link} href="/login">
+            Or login
           </MuiLink>
         </Box>
       </Paper>
