@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   };
 
   if (!error.displayName && !error.password && !error.email) {
-    const newUser = {
+    const newUser: any = {
       uuid: generateGUID(),
       from: 'custom-db',
       password,

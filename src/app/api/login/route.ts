@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   const { email, password } = data;
   const errorMessage = 'Check your email or password';
 
-  const user = _.cloneDeep(authDB.users.find(user => user.data.email === email));
+  const user = _.cloneDeep(authDB.users.find(user => user.data.email === email)) as any;
 
   const error = {
     email: user ? null : errorMessage,

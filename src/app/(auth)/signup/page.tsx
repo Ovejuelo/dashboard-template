@@ -10,6 +10,8 @@ import { SignupFormSchema } from './definitions';
 import { useAppDispatch } from '@/lib/store/hooks';
 import { createUserSlice } from '@/lib/store/features/auth/auth-slice';
 import { ISignupData } from '@/lib/store/features/auth/auth-types';
+import { IUserSliceState } from '@/lib/store/features/user/user-types';
+import { setUserData } from '@/lib/store/features/user/user-slice';
 
 export function SignupForm() {
   const dispatch = useAppDispatch();
@@ -23,7 +25,14 @@ export function SignupForm() {
   });
 
   const onSubmit: SubmitHandler<ISignupData> = async data => {
-    await dispatch(createUserSlice(data));
+    const resp = await dispatch(createUserSlice(data));
+    const userData: IUserSliceState = {
+      access_token: resp.payload.access_token,
+      data: {
+        ...resp.payload.user.data
+      }
+    };
+    dispatch(setUserData(userData));
   };
 
   return (
