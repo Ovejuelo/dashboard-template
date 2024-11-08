@@ -2,6 +2,7 @@ export interface ISignupData {
   username: string;
   email: string;
   password: string;
+  confirm?: string;
 }
 
 export interface ILoginData {

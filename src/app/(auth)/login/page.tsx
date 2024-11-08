@@ -12,9 +12,13 @@ import { userLoginSlice } from '@/lib/store/features/auth/auth-slice';
 import { ILoginData } from '@/lib/store/features/auth/auth-types';
 import { setUserData } from '@/lib/store/features/user/user-slice';
 import { IUserSliceState } from '@/lib/store/features/user/user-types';
+import { useBreakpoint } from '@/hooks';
+import { paperStyles } from '../styles';
 
 export function LoginForm() {
   const dispatch = useAppDispatch();
+  const isSmallMobile = useBreakpoint('xs');
+
   const {
     control,
     handleSubmit,
@@ -36,20 +40,11 @@ export function LoginForm() {
   };
 
   return (
-    <Box
-      px={{ xs: 1, sm: 2 }}
-      width={1}
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="100vh"
-    >
-      <Paper sx={{ padding: 4, width: { xs: '100%', md: 500 } }}>
-        <Box mb={4}>
-          <Typography align="center" variant="h3">
-            Login
-          </Typography>
-        </Box>
+    <Box display="flex" justifyContent="center" alignItems="center" height={1}>
+      <Paper square={isSmallMobile} sx={paperStyles}>
+        <Typography align="center" variant="h3" mb={4}>
+          Login
+        </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
             name="email"
