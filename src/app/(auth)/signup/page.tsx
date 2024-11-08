@@ -12,15 +12,19 @@ import { createUserSlice } from '@/lib/store/features/auth/auth-slice';
 import { ISignupData } from '@/lib/store/features/auth/auth-types';
 import { IUserSliceState } from '@/lib/store/features/user/user-types';
 import { setUserData } from '@/lib/store/features/user/user-slice';
+import { useBreakpoint } from '@/hooks';
+import { paperStyles } from '../styles';
 
 export function SignupForm() {
   const dispatch = useAppDispatch();
+  const isSmallMobile = useBreakpoint('xs');
+
   const {
     control,
     handleSubmit,
     formState: { errors, isSubmitting }
   } = useForm<ISignupData>({
-    defaultValues: { username: '', password: '', email: '' },
+    defaultValues: { username: '', password: '', email: '', confirm: '' },
     resolver: zodResolver(SignupFormSchema)
   });
 
@@ -36,20 +40,11 @@ export function SignupForm() {
   };
 
   return (
-    <Box
-      px={{ xs: 1, sm: 2 }}
-      width={1}
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="100vh"
-    >
-      <Paper sx={{ padding: 4, width: { xs: '100%', md: 500 } }}>
-        <Box mb={4}>
-          <Typography align="center" variant="h3">
-            Register
-          </Typography>
-        </Box>
+    <Box display="flex" justifyContent="center" alignItems="center" height={1}>
+      <Paper square={isSmallMobile} sx={paperStyles}>
+        <Typography align="center" variant="h3" mb={4}>
+          Register
+        </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
             name="username"
@@ -66,6 +61,13 @@ export function SignupForm() {
             control={control}
             render={({ field }) => (
               <Input {...field} label="Password" type="password" errors={errors} />
+            )}
+          />
+          <Controller
+            name="confirm"
+            control={control}
+            render={({ field }) => (
+              <Input {...field} label="Password (confirm)" type="password" errors={errors} />
             )}
           />
           <Box width={1} display="flex" justifyContent="center" mt={2}>

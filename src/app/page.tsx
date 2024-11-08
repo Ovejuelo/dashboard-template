@@ -1,8 +1,8 @@
 'use client';
 
 import { Box, FormControlLabel, Switch, Link as MuiLink } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '@/lib/state/hooks';
-import { setUserData, selectUserData } from '@/lib/state/features/user/user-slice';
+import { useAppDispatch, useAppSelector } from '@/lib/store/hooks';
+import { setUserData, selectUserData } from '@/lib/store/features/user/user-slice';
 import Link from 'next/link';
 
 export default function Home() {
@@ -10,13 +10,16 @@ export default function Home() {
   const userData = useAppSelector(selectUserData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setUserData({ darkTheme: event.target.checked }));
+    const theme = event.target.checked ? 'dark' : 'licht';
+    dispatch(setUserData({ data: { theme } }));
   };
 
   return (
     <Box p={2}>
       <FormControlLabel
-        control={<Switch checked={userData.darkTheme} onChange={handleChange} />}
+        control={
+          <Switch checked={userData.theme === 'dark' ? true : false} onChange={handleChange} />
+        }
         label="Dark theme"
       />
       <Box>
