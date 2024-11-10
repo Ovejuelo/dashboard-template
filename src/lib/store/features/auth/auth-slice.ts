@@ -4,7 +4,6 @@ import { createUser, userLogin } from './auth-api';
 import { IAuthInitialState, ILoginData, ISignupData } from './auth-types';
 
 const initialState: IAuthInitialState = {
-  loading: false,
   success: true,
   error: {
     email: '',
@@ -19,38 +18,30 @@ export const authSlice = createAppSlice({
     createUserSlice: create.asyncThunk(
       async (data: ISignupData) => {
         const response = await createUser(data);
-        createSession(response.access_token);
+        if (response?.access_token) createSession(response.access_token);
         return response;
       },
       {
-        pending: state => {
-          state.loading = true;
-        },
         fulfilled: state => {
-          state.loading = false;
           state.success = true;
         },
         rejected: state => {
-          state.loading = false;
+          state.success = false;
         }
       }
     ),
     userLoginSlice: create.asyncThunk(
       async (data: ILoginData) => {
         const response = await userLogin(data);
-        createSession(response.access_token);
+        if (response.access_token) createSession(response.access_token);
         return response;
       },
       {
-        pending: state => {
-          state.loading = true;
-        },
         fulfilled: state => {
-          state.loading = false;
           state.success = true;
         },
         rejected: state => {
-          state.loading = false;
+          state.success = false;
         }
       }
     )

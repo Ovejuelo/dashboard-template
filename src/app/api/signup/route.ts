@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { NextRequest, NextResponse } from 'next/server';
 
-import { generateGUID } from '@/utils/board-utils';
+import { generateGUID } from '@/utils/utils';
 import { authDB, jwtConfig } from './db';
 import _ from 'lodash';
 
@@ -40,5 +40,5 @@ export async function POST(req: NextRequest) {
       user,
       access_token
     });
-  } else return NextResponse.json(error, { status: 400 });
+  } else return NextResponse.json(error);
 }

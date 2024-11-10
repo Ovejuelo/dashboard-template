@@ -2,8 +2,9 @@ import { Action, combineSlices, configureStore, ThunkAction } from '@reduxjs/too
 
 import { userSlice } from './features/user/user-slice';
 import { authSlice } from './features/auth/auth-slice';
+import { alertMessageSlice } from './features/alert-message/alert-message-slice';
 
-const rootReducer = combineSlices(userSlice, authSlice);
+const rootReducer = combineSlices(userSlice, authSlice, alertMessageSlice);
 
 export const makeStore = () => {
   return configureStore({
