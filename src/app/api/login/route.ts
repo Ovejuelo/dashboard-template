@@ -10,11 +10,10 @@ export async function POST(req: Request) {
   const user = _.cloneDeep(authDB.users.find(user => user.data.email === email)) as any;
 
   const error = {
-    email: user ? null : errorMessage,
-    password: user && user.password === password ? null : errorMessage
+    message: user && user.password === password ? null : errorMessage
   };
 
-  if (!error.email && !error.password) {
+  if (!error.message) {
     const access_token = jwt.sign({ id: user?.uuid }, jwtConfig.secret, {
       expiresIn: jwtConfig.expiresIn
     });
@@ -30,6 +29,6 @@ export async function POST(req: Request) {
 
     return Response.json(response);
   } else {
-    return Response.json(error, { status: 400 });
+    return Response.json(error);
   }
 }

@@ -14,6 +14,7 @@ import { IUserSliceState } from '@/lib/store/features/user/user-types';
 import { setUserData } from '@/lib/store/features/user/user-slice';
 import { useBreakpoint } from '@/hooks';
 import { paperStyles } from '../styles';
+import { showMessage } from '@/lib/store/features/alert-message/alert-message-slice';
 
 export function SignupForm() {
   const dispatch = useAppDispatch();
@@ -30,13 +31,19 @@ export function SignupForm() {
 
   const onSubmit: SubmitHandler<ISignupData> = async data => {
     const resp = await dispatch(createUserSlice(data));
-    const userData: IUserSliceState = {
-      access_token: resp.payload.access_token,
-      data: {
-        ...resp.payload.user.data
-      }
-    };
-    dispatch(setUserData(userData));
+    if (resp.payload.access_token) {
+      const userData: IUserSliceState = {
+        data: {
+          access_token: resp.payload.access_token,
+          ...resp.payload.user.data
+        }
+      };
+      dispatch(setUserData(userData));
+    } else {
+      if (resp.payload.email)
+        dispatch(showMessage({ variant: 'warning', message: resp.payload.email }));
+      else dispatch(showMessage({ variant: 'warning', message: 'Unexpected error, try later' }));
+    }
   };
 
   return (

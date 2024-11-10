@@ -11,7 +11,6 @@ export interface ILoginData {
 }
 
 export interface IAuthInitialState {
-  loading: boolean;
   success: boolean;
   error: {
     email: string | null;

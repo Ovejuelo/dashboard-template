@@ -14,6 +14,7 @@ import { setUserData } from '@/lib/store/features/user/user-slice';
 import { IUserSliceState } from '@/lib/store/features/user/user-types';
 import { useBreakpoint } from '@/hooks';
 import { paperStyles } from '../styles';
+import { showMessage } from '@/lib/store/features/alert-message/alert-message-slice';
 
 export function LoginForm() {
   const dispatch = useAppDispatch();
@@ -24,19 +25,23 @@ export function LoginForm() {
     handleSubmit,
     formState: { errors, isSubmitting }
   } = useForm<ILoginData>({
-    defaultValues: { password: '', email: '' },
+    defaultValues: { password: '123456', email: 'admin@mail.com' },
     resolver: zodResolver(LoginFormSchema)
   });
 
   const onSubmit: SubmitHandler<ILoginData> = async data => {
     const resp = await dispatch(userLoginSlice(data));
-    const userData: IUserSliceState = {
-      access_token: resp.payload.access_token,
-      data: {
-        ...resp.payload.user.data
-      }
-    };
-    dispatch(setUserData(userData));
+    if (resp.payload.access_token) {
+      const userData: IUserSliceState = {
+        data: {
+          access_token: resp.payload.access_token,
+          ...resp.payload.user.data
+        }
+      };
+      dispatch(setUserData(userData));
+    } else {
+      dispatch(showMessage({ variant: 'warning', message: resp.payload.message }));
+    }
   };
 
   return (

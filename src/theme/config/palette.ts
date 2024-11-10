@@ -1,59 +1,87 @@
 export const lightPalette = {
   primary: {
-    main: '#00BBD3',
-    light: '#87CEEB',
-    dark: '#006680'
+    main: '#0A74DA',
+    light: '#42a5f5',
+    dark: '#1565c0',
+    contrastText: '#fff'
   },
   secondary: {
-    main: '#FFBC42',
-    light: '#FFE9C4',
-    dark: '#996622'
-  },
-  success: {
-    main: '#2ECC71'
-  },
-  warning: {
-    main: '#F7DC6F'
+    main: '#FF6B6B',
+    light: '#ffa3a3',
+    dark: '#b24848',
+    contrastText: '#fff'
   },
   error: {
-    main: '#E74C3C'
+    main: '#d32f2f',
+    light: '#ef5350',
+    dark: '#c62828',
+    contrastText: '#fff'
+  },
+  warning: {
+    main: '#ed6c02',
+    light: '#ff9800',
+    dark: '#e65100',
+    contrastText: '#fff'
   },
   info: {
-    main: '#3498DB'
+    main: '#0288d1',
+    light: '#03a9f4',
+    dark: '#01579b',
+    contrastText: '#fff'
   },
+  success: {
+    main: '#2e7d32',
+    light: '#4caf50',
+    dark: '#1b5e20',
+    contrastText: '#fff'
+  },
+  divider: 'rgba(214, 214, 214, 0.7)',
   background: {
-    default: '#EAEBED',
-    paper: '#FFFFFF'
-  },
-  divider: 'rgba(0, 0, 0, 0.12)'
+    paper: '#f4f4f4',
+    default: '#e8e8e8'
+  }
 };
 
 export const darkPalette = {
   primary: {
-    main: '#00BBD3',
-    light: '#87CEEB',
-    dark: '#006680'
+    main: '#0A74DA',
+    light: '#63a4ff',
+    dark: '#004ba0',
+    contrastText: 'rgba(0, 0, 0, 0.87)'
   },
   secondary: {
-    main: '#FFBC42',
-    light: '#FFE9C4',
-    dark: '#996622'
-  },
-  success: {
-    main: '#2ECC71'
-  },
-  warning: {
-    main: '#F7DC6F'
+    main: '#FF6B6B',
+    light: '#ff9a9a',
+    dark: '#b24848',
+    contrastText: 'rgba(0, 0, 0, 0.87)'
   },
   error: {
-    main: '#E74C3C'
+    main: '#f44336',
+    light: '#e57373',
+    dark: '#d32f2f',
+    contrastText: '#fff'
+  },
+  warning: {
+    main: '#ffa726',
+    light: '#ffb74d',
+    dark: '#f57c00',
+    contrastText: 'rgba(0, 0, 0, 0.87)'
   },
   info: {
-    main: '#3498DB'
+    main: '#29b6f6',
+    light: '#4fc3f7',
+    dark: '#0288d1',
+    contrastText: 'rgba(0, 0, 0, 0.87)'
   },
+  success: {
+    main: '#66bb6a',
+    light: '#81c784',
+    dark: '#388e3c',
+    contrastText: 'rgba(0, 0, 0, 0.87)'
+  },
+  divider: 'rgba(255, 255, 255, 0.12)',
   background: {
-    default: '#121212',
-    paper: '#0A2239'
-  },
-  divider: 'rgba(0, 0, 0, 0.12)'
+    paper: '#121212',
+    default: '#121212'
+  }
 };

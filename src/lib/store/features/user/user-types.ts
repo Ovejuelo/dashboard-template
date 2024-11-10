@@ -3,9 +3,9 @@ export type IUserSliceData = {
   email?: string;
   theme?: string;
   role?: string;
+  access_token?: string;
 };
 
 export type IUserSliceState = {
-  access_token?: string;
   data: IUserSliceData;
 };
