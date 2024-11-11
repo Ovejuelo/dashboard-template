@@ -6,6 +6,7 @@ import { Box, Drawer } from '@mui/material';
 import ToolbarLayout from './components/toolbar';
 import { sizes, styles } from './styles';
 import { AlertMessage } from '@/components/alert-message';
+import { NavbarLayout } from './components/navbar';
 
 export const DashboardLayout1 = ({ children }: { children: React.ReactNode }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -25,8 +26,12 @@ export const DashboardLayout1 = ({ children }: { children: React.ReactNode }) =>
           onClose={handleDrawerToggle}
           ModalProps={{ keepMounted: true }}
           sx={styles.drawerTemporary}
-        ></Drawer>
-        <Drawer open variant="permanent" sx={styles.drawerPermanent}></Drawer>
+        >
+          <NavbarLayout appBarHeight={sizes.topBarHeightXs} />
+        </Drawer>
+        <Drawer open variant="permanent" sx={styles.drawerPermanent}>
+          <NavbarLayout appBarHeight={sizes.topBarHeight} />
+        </Drawer>
       </Box>
       <Box component="main" sx={styles.mainContent}>
         {children}

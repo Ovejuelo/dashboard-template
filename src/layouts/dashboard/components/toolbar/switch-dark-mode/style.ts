@@ -23,7 +23,7 @@ export const CustomSwitch = styled(Switch)(({ theme }) => ({
     }
   },
   '& .MuiSwitch-thumb': {
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
     width: 24,
     height: 24,
     '&:before': {

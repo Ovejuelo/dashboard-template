@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { AppBar, Box, IconButton, Toolbar, Typography, useTheme } from '@mui/material';
+import { AppBar, Box, IconButton, Toolbar, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { AccountMenu } from './account-menu';
@@ -36,7 +36,6 @@ const ToolbarLayout: React.FC<ToolbarLayoutProps> = props => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5">Dashboard UI</Typography>
         </Box>
 
         <Box display="flex">

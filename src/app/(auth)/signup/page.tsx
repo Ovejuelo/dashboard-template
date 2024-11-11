@@ -49,9 +49,15 @@ export function SignupForm() {
   return (
     <Box display="flex" justifyContent="center" alignItems="center" height={1}>
       <Paper square={isSmallMobile} sx={paperStyles}>
-        <Typography align="center" variant="h3" mb={4}>
-          Register
-        </Typography>
+        <Typography variant="h3">Signup</Typography>
+        <Box width={1} display="flex" justifyContent="flex-start" mt={1} mb={4}>
+          <Typography mr={1} color="textSecondary">
+            Already have an account?
+          </Typography>
+          <MuiLink component={Link} href="/login">
+            Login
+          </MuiLink>
+        </Box>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
             name="username"
@@ -83,11 +89,6 @@ export function SignupForm() {
             </Button>
           </Box>
         </form>
-        <Box width={1} display="flex" justifyContent="center" mt={2}>
-          <MuiLink component={Link} href="/login">
-            Or login
-          </MuiLink>
-        </Box>
       </Paper>
     </Box>
   );

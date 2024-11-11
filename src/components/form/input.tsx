@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilledTextFieldProps, IconButton, InputAdornment, TextField } from '@mui/material';
+import { FilledTextFieldProps, InputAdornment, TextField } from '@mui/material';
 import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
 
 interface IInputProps extends Omit<FilledTextFieldProps, 'variant'> {
@@ -31,13 +31,19 @@ const Input: React.FC<IInputProps> = props => {
           endAdornment:
             isPasswordType && !disabled ? (
               <InputAdornment position="end">
-                <IconButton onClick={() => setIsVisible(!isVisible)}>
-                  {isVisible ? (
-                    <VisibilityOffOutlined color="primary" />
-                  ) : (
-                    <VisibilityOutlined color="primary" />
-                  )}
-                </IconButton>
+                {isVisible ? (
+                  <VisibilityOffOutlined
+                    onClick={() => setIsVisible(!isVisible)}
+                    sx={{ cursor: 'pointer' }}
+                    color="primary"
+                  />
+                ) : (
+                  <VisibilityOutlined
+                    onClick={() => setIsVisible(!isVisible)}
+                    sx={{ cursor: 'pointer' }}
+                    color="primary"
+                  />
+                )}
               </InputAdornment>
             ) : null,
           autoComplete: 'new-password',

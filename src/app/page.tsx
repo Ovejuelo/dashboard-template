@@ -1,40 +1,42 @@
 'use client';
 
-import { Box, FormControlLabel, Switch, Link as MuiLink } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '@/lib/store/hooks';
-import { setUserData, selectUserData } from '@/lib/store/features/user/user-slice';
 import Link from 'next/link';
+import DesktopMacOutlinedIcon from '@mui/icons-material/DesktopMacOutlined';
+
+import { Box, Link as MuiLink, Typography } from '@mui/material';
+import { SwitchDarkMode } from '@/layouts/dashboard/components/toolbar/switch-dark-mode';
 
 export default function Home() {
-  const dispatch = useAppDispatch();
-  const userData = useAppSelector(selectUserData);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const theme = event.target.checked ? 'dark' : 'licht';
-    dispatch(setUserData({ data: { theme } }));
-  };
-
   return (
-    <Box p={2}>
-      <FormControlLabel
-        control={
-          <Switch checked={userData.theme === 'dark' ? true : false} onChange={handleChange} />
-        }
-        label="Dark theme"
-      />
-      <Box>
-        <MuiLink component={Link} href="/signup">
-          Register
-        </MuiLink>
-      </Box>
-      <Box>
-        <MuiLink component={Link} href="/login">
+    <Box
+      display="flex"
+      justifyContent="center"
+      flexDirection="column"
+      alignItems="center"
+      height="100vh"
+      width="100vw"
+      bgcolor="background.paper"
+    >
+      <DesktopMacOutlinedIcon color="primary" sx={{ fontSize: 150, marginBottom: 2 }} />
+      <SwitchDarkMode />
+      <Typography variant="h1" align="center" mt={1} mb={1}>
+        Dashboard template
+      </Typography>
+      <Typography align="center" maxWidth={380}>
+        Dashboard skeleton template with a simple authentication and light/dark mode
+      </Typography>
+      <Box mt={2}>
+        <MuiLink
+          component={Link}
+          href="/login"
+          sx={{ marginRight: 4 }}
+          underline="none"
+          color="secondary"
+        >
           Login
         </MuiLink>
-      </Box>
-      <Box>
-        <MuiLink component={Link} href="/dashboard">
-          Enter dashboard
+        <MuiLink component={Link} href="/signup" underline="none" color="secondary">
+          Signup
         </MuiLink>
       </Box>
     </Box>

@@ -15,7 +15,7 @@ const SwitchDarkMode: React.FC = () => {
   };
 
   return (
-    <Box display="flex" alignItems="center" mr={1}>
+    <Box display="flex" alignItems="center">
       <Tooltip title={`Toggle ${userData.theme === 'dark' ? 'light' : 'dark'} mode`}>
         <CustomSwitch
           size="small"

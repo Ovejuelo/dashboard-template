@@ -4,10 +4,9 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 
 import StoreProvider from '../lib/store/store-provider';
 import { Theme } from '@/theme';
-import Head from 'next/head';
 
 export const metadata: Metadata = {
-  title: 'Board',
+  title: 'Dashboard',
   description: 'Board Application'
 };
 
@@ -25,9 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-      </Head>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+          rel="stylesheet"
+        />
+      </head>
       <body className={roboto.variable}>
         <StoreProvider>
           <AppRouterCacheProvider options={{ key: 'css' }}>
