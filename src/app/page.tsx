@@ -6,7 +6,7 @@ import DesktopMacOutlinedIcon from '@mui/icons-material/DesktopMacOutlined';
 import { Box, Link as MuiLink, Typography } from '@mui/material';
 import { SwitchDarkMode } from '@/layouts/dashboard/components/toolbar/switch-dark-mode';
 
-export default function Home() {
+export default function Page() {
   return (
     <Box
       display="flex"

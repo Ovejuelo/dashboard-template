@@ -1,10 +1,8 @@
 'use client';
 
-import { Box } from '@mui/material';
 import * as React from 'react';
+import { Box } from '@mui/material';
 
-const Dashboard: React.FC = () => {
+export default function Page() {
   return <Box></Box>;
-};
-
-export default Dashboard;
+}

@@ -16,7 +16,7 @@ import { useBreakpoint } from '@/hooks';
 import { paperStyles } from '../styles';
 import { showMessage } from '@/lib/store/features/alert-message/alert-message-slice';
 
-export function LoginForm() {
+export default function Page() {
   const dispatch = useAppDispatch();
   const isSmallMobile = useBreakpoint('xs');
 
@@ -79,5 +79,3 @@ export function LoginForm() {
     </Box>
   );
 }
-
-export default LoginForm;
