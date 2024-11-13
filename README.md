@@ -33,3 +33,7 @@ bun dev
 ```
 
 Open ((http://localhost:3000)) with your browser to see the result.
+
+## Demo
+
+- [Dashboard Template](https://dashboard-template-alpha-seven.vercel.app/)
