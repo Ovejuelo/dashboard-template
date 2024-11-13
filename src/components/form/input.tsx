@@ -8,7 +8,7 @@ interface IInputProps extends Omit<FilledTextFieldProps, 'variant'> {
   name: string;
 }
 
-const Input: React.FC<IInputProps> = props => {
+const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
   const { name, type, slotProps, helperText, disabled, errors, ...otherProps } = props;
   const isPasswordType = type === 'password';
   const [isVisible, setIsVisible] = React.useState(false);
@@ -25,6 +25,7 @@ const Input: React.FC<IInputProps> = props => {
       error={!!hasError}
       helperText={hasError ? hasError?.message : helperText}
       autoComplete="new-password"
+      inputRef={ref}
       slotProps={{
         ...slotProps,
         input: {
@@ -57,6 +58,8 @@ const Input: React.FC<IInputProps> = props => {
       disabled={disabled}
     />
   );
-};
+});
+
+Input.displayName = 'Input';
 
 export default Input;
