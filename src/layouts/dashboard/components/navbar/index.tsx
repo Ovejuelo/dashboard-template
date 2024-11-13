@@ -22,7 +22,7 @@ const NavbarLayout: React.FC<INavbarLayoutProps> = ({ appBarHeight }) => {
           alignItems: 'center',
           flexShrink: 1,
           minHeight: appBarHeight,
-          background: theme.palette.background.default
+          background: theme.palette.background.paper
         }}
       >
         <Box display="flex" px="1rem" alignItems="center" flex={1}>
@@ -35,7 +35,7 @@ const NavbarLayout: React.FC<INavbarLayoutProps> = ({ appBarHeight }) => {
             <MenuItem
               key={item.id}
               sx={{ borderRadius: 2, marginBottom: 0.4 }}
-              selected={pathname === item.path ? true : false}
+              selected={pathname === item.path}
               component={Link}
               href={item.path}
             >
