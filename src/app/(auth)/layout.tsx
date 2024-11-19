@@ -1,9 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Grid from '@mui/material/Grid2';
+
 import { AlertMessage } from '@/components/alert-message';
 
-export default function AuthLayout({ children }: { children: React.ReactNode }) {
+export default async function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <Box sx={{ flexGrow: 1 }} height="100vh" width={1}>
       <Grid container height={1}>

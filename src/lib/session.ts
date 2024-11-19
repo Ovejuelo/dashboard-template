@@ -41,6 +41,17 @@ export async function createSession(token: string) {
   redirect('/dashboard');
 }
 
+export async function verifySession() {
+  const cookie = cookies().get('session')?.value;
+  const session = (await decrypt(cookie)) as any;
+
+  if (!session?.id) {
+    redirect('/login');
+  }
+
+  return { isAuth: true, userId: String(session.id) };
+}
+
 export async function deleteSession() {
   (await cookies()).delete('session');
   redirect('/login');
