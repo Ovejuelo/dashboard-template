@@ -7,7 +7,7 @@ export const sizes = {
 export const styles = {
   drawerPermanent: {
     width: sizes.drawerWidth,
-    flexShrink: 1,
+    flexShrink: 0,
     display: { xs: 'none', md: 'block' },
     '& .MuiDrawer-paper': {
       boxSizing: 'border-box',

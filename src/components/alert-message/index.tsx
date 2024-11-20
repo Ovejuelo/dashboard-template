@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, IconButton, Snackbar, SnackbarContent, Typography, useTheme } from '@mui/material';
+import { Box, IconButton, Snackbar, SnackbarContent, Typography } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '@/lib/store/hooks';
 import {
   hideMessage,
@@ -31,7 +31,6 @@ const getVarianIcon = (variant: string) => {
 const AlertMessage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { state, options } = useAppSelector(selectMessageState);
-  const theme = useTheme();
 
   const handleClose = (): void => {
     dispatch(hideMessage());
@@ -40,7 +39,11 @@ const AlertMessage: React.FC = () => {
   return (
     <Snackbar {...options} open={state} onClose={handleClose}>
       <SnackbarContent
-        sx={{ background: theme.palette[options.variant].main, color: '#FFF', maxWidth: 500 }}
+        sx={{
+          background: theme => theme.palette[options.variant].main,
+          color: '#FFF',
+          maxWidth: 500
+        }}
         message={
           <Box display="flex" alignItems="center">
             {getVarianIcon(options.variant) && getVarianIcon(options.variant)}

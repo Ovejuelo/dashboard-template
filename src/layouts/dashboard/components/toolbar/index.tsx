@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { AppBar, Box, IconButton, Toolbar, useTheme } from '@mui/material';
+import { AppBar, Box, IconButton, Toolbar, Typography } from '@mui/material';
+import JavascriptIcon from '@mui/icons-material/Javascript';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { AccountMenu } from './account-menu';
@@ -13,18 +14,15 @@ export interface ToolbarLayoutProps {
 }
 
 const ToolbarLayout: React.FC<ToolbarLayoutProps> = props => {
-  const theme = useTheme();
-
   return (
     <AppBar
       elevation={0}
       color="transparent"
+      position="fixed"
       sx={{
-        width: {
-          md: `calc(100% - ${props.drawerWidth}px)`,
-          borderBottom: `solid 1px ${theme.palette.divider}`,
-          background: theme.palette.background.paper
-        }
+        borderBottom: theme => `solid 1px ${theme.palette.divider}`,
+        background: theme => theme.palette.background.paper,
+        zIndex: theme => ({ md: theme.zIndex.drawer + 1 })
       }}
     >
       <Toolbar sx={{ padding: '0 1rem', display: 'flex', justifyContent: 'space-between' }}>
@@ -36,6 +34,12 @@ const ToolbarLayout: React.FC<ToolbarLayoutProps> = props => {
           >
             <MenuIcon />
           </IconButton>
+          <Box display="flex" alignItems="center">
+            <JavascriptIcon fontSize="large" color="primary" />
+            <Typography variant="h6" ml={1}>
+              Dashboard UI
+            </Typography>
+          </Box>
         </Box>
 
         <Box display="flex">
