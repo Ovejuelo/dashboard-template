@@ -2,8 +2,6 @@ import { Box, Typography } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Grid from '@mui/material/Grid2';
 
-import { AlertMessage } from '@/components/alert-message';
-
 export default async function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <Box sx={{ flexGrow: 1 }} height="100vh" width={1}>
@@ -28,7 +26,6 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
           {children}
         </Grid>
       </Grid>
-      <AlertMessage />
     </Box>
   );
 }

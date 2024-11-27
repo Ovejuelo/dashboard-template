@@ -4,6 +4,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 
 import StoreProvider from '../lib/store/store-provider';
 import { Theme } from '@/theme';
+import { NotistackProvider } from '@/components/notistack-provider';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -33,7 +34,9 @@ export default function RootLayout({
       <body className={roboto.variable}>
         <StoreProvider>
           <AppRouterCacheProvider options={{ key: 'css' }}>
-            <Theme>{children}</Theme>
+            <Theme>
+              <NotistackProvider>{children}</NotistackProvider>
+            </Theme>
           </AppRouterCacheProvider>
         </StoreProvider>
       </body>

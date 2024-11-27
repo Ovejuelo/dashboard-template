@@ -14,7 +14,7 @@ import { setUserData } from '@/lib/store/features/user/user-slice';
 import { IUserSliceState } from '@/lib/store/features/user/user-types';
 import { useBreakpoint } from '@/hooks';
 import { paperStyles } from '../styles';
-import { showMessage } from '@/lib/store/features/alert-message/alert-message-slice';
+import { Notifier } from '@/utils/notistack-helper';
 
 export default function Page() {
   const dispatch = useAppDispatch();
@@ -40,7 +40,7 @@ export default function Page() {
       };
       dispatch(setUserData(userData));
     } else {
-      dispatch(showMessage({ variant: 'warning', message: resp.payload.message }));
+      Notifier.warning(resp.payload.message);
     }
   };
 

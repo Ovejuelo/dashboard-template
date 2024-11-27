@@ -5,10 +5,10 @@ import { Box, Drawer, Toolbar } from '@mui/material';
 
 import ToolbarLayout from './components/toolbar';
 import { sizes, styles } from './styles';
-import { AlertMessage } from '@/components/alert-message';
 import { NavbarLayout } from './components/navbar';
+import { MainDialog } from '@/components/dialog';
 
-export const DashboardLayout1 = ({ children }: { children: React.ReactNode }) => {
+export const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle: () => void = () => {
@@ -35,7 +35,9 @@ export const DashboardLayout1 = ({ children }: { children: React.ReactNode }) =>
       <Box component="main" sx={styles.mainContent}>
         {children}
       </Box>
-      <AlertMessage />
+
+      {/* COMMON COMPONENTS */}
+      <MainDialog />
     </Box>
   );
 };

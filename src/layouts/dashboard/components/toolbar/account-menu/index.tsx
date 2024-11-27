@@ -1,11 +1,61 @@
 'use client';
 
 import React from 'react';
-import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Typography
+} from '@mui/material';
 import { Logout } from '@mui/icons-material';
 import { AvatarName } from '@/components/avatar';
 import { useAppDispatch, useAppSelector } from '@/lib/store/hooks';
 import { selectUserData, setUserLogout } from '@/lib/store/features/user/user-slice';
+import { closeDialog, openDialog } from '@/lib/store/features/dialog/dialog-slice';
+import { resetState } from '@/lib/store/store';
+
+const ConfirmLogout: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  return (
+    <Box p={3} maxWidth={512}>
+      <Typography variant="h4" mb={1}>
+        Do you want to log out now?
+      </Typography>
+      <Typography color="textSecondary" mb={4}>
+        After logging out, you’ll need to enter your credentials again to access your account.
+      </Typography>
+      <Box display={'flex'} justifyContent={'space-between'}>
+        <Button
+          fullWidth
+          color="primary"
+          onClick={() => dispatch(closeDialog())}
+          variant="contained"
+          sx={{ marginRight: 1 }}
+        >
+          Cancel
+        </Button>
+        <Button
+          fullWidth
+          color="secondary"
+          onClick={() => {
+            dispatch(setUserLogout());
+            dispatch(resetState());
+          }}
+          variant="contained"
+          sx={{ marginLeft: 1 }}
+        >
+          Confirm
+        </Button>
+      </Box>
+    </Box>
+  );
+};
 
 const AccountMenu: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +72,12 @@ const AccountMenu: React.FC = () => {
   };
 
   const logoutUser = () => {
-    dispatch(setUserLogout());
+    dispatch(
+      openDialog({
+        children: <ConfirmLogout />,
+        permanent: true
+      })
+    );
   };
 
   return (

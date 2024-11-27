@@ -14,7 +14,7 @@ import { IUserSliceState } from '@/lib/store/features/user/user-types';
 import { setUserData } from '@/lib/store/features/user/user-slice';
 import { useBreakpoint } from '@/hooks';
 import { paperStyles } from '../styles';
-import { showMessage } from '@/lib/store/features/alert-message/alert-message-slice';
+import { Notifier } from '@/utils/notistack-helper';
 
 export default function Page() {
   const dispatch = useAppDispatch();
@@ -40,9 +40,8 @@ export default function Page() {
       };
       dispatch(setUserData(userData));
     } else {
-      if (resp.payload.email)
-        dispatch(showMessage({ variant: 'warning', message: resp.payload.email }));
-      else dispatch(showMessage({ variant: 'warning', message: 'Unexpected error, try later' }));
+      if (resp.payload.email) Notifier.warning(resp.payload.message);
+      else Notifier.warning('Unexpected error, try later');
     }
   };
 
